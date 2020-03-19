@@ -1,0 +1,33 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Copy files to public directory
+      run: |
+        mkdir -p ./frontend/mysite.io/public
+        #cp index.html ./frontend/mysite.io/public
+        #pip3 install pandas
+        #python3 -c "
+        #import pandas as pd
+        #ex_data = pd.read_csv('https://unplanned.co.za/data.csv', names=['dates', 'unplanned', 'planned'], header=0)
+        #ex_data['planned'] = ex_data['planned'].fillna(0)
+        #ex_data.to_json('output.json')" 
+        echo "[{"0":"hello"}]" >> output.json
+        cp output.json ./frontend/mysite.io/public
+    - name: Deploy to GH Pages
+      uses: peaceiris/actions-gh-pages@v2.5.0
+      env: 
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./frontend/mysite.io/public

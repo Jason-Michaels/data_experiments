@@ -25,7 +25,7 @@ jobs:
         #ex_data.to_json('output.json')"
         ####### 
         #echo "[{"0":"hello"}]" >> output.json
-        echo '[' >> sample.json
+        echo '[' > sample.json
         pip3 install xmltodict
         python3 -c "
         import xmltodict, json

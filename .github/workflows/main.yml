@@ -22,9 +22,19 @@ jobs:
         #import pandas as pd
         #ex_data = pd.read_csv('https://unplanned.co.za/data.csv', names=['dates', 'unplanned', 'planned'], header=0)
         #ex_data['planned'] = ex_data['planned'].fillna(0)
-        #ex_data.to_json('output.json')" 
-        echo "[{"0":"hello"}]" >> output.json
-        cp output.json ./frontend/mysite.io/public
+        #ex_data.to_json('output.json')"
+        ####### 
+        #echo "[{"0":"hello"}]" >> output.json
+        pip3 install xmltodict
+        python3 -c "
+        import xmltodict, json
+        with open('text.xml') as inFh:
+            with open('sample.json','w') as outFh:
+                json.dump(xmltodict.parse(inFh.read()), outFh)
+                
+        "
+        wc -m sample.json
+        cp sample.json ./frontend/mysite.io/public
     - name: Deploy to GH Pages
       uses: peaceiris/actions-gh-pages@v2.5.0
       env: 

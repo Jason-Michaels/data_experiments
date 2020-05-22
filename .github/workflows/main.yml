@@ -36,6 +36,7 @@ jobs:
         "
         #wc -m sample.json
         echo ']' >> sample.json
+        sed -i 's/\n//' sample.json
         cp sample.json ./frontend/mysite.io/public
     - name: Deploy to GH Pages
       uses: peaceiris/actions-gh-pages@v2.5.0

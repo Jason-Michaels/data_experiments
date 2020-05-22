@@ -30,7 +30,7 @@ jobs:
         python3 -c "
         import xmltodict, json
         with open('test.xml') as inFh:
-            with open('sample.json','w+') as outFh:
+            with open('sample.json','a+') as outFh:
                 json.dump(xmltodict.parse(inFh.read()), outFh)
                 
         "

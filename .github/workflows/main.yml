@@ -28,7 +28,7 @@ jobs:
         pip3 install xmltodict
         python3 -c "
         import xmltodict, json
-        with open('text.xml') as inFh:
+        with open('test.xml') as inFh:
             with open('sample.json','w') as outFh:
                 json.dump(xmltodict.parse(inFh.read()), outFh)
                 
